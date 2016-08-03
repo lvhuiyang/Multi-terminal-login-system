@@ -6,6 +6,8 @@ from flask import flash
 from flask import redirect
 from flask import url_for
 from flask_login import login_user
+from flask_login import logout_user
+from flask_login import login_required
 from get_ip import get_ip_info
 from application.models import User
 
@@ -37,14 +39,23 @@ def index():
             flash(u"账号或密码错误，请联系管理员")
             return redirect(url_for('main.index'))
     else:
-        u"请求非法"
+        return u"请求非法"
 
 
-@main.route('/login', methods=['GET', 'POST'])
-def login():
+@main.route('/logout', methods=['GET', 'POST'])
+@login_required
+def logout():
     if request.method == 'GET':
-        pass
+        logout_user()
+        flash(u"您已注销该账号，如有需要请重新登录")
+        return redirect(url_for('main.index'))
     elif request.method == 'POST':
         pass
     else:
-        u"请求非法"
+        return u"请求非法"
+
+
+@main.route('/details', methods=['GET', 'POST'])
+@login_required
+def details():
+    return render_template("details.html")
