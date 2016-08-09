@@ -84,17 +84,7 @@ gunicorn -w4 -b0.0.0.0:8000 manage:app
 
 ### 安卓终端
 
-+ 管理界面
-
-![android1](http://obmfmt907.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160809104402.png)
-
-+ 登陆界面
-
-![android2](http://obmfmt907.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160809104424.png)
-
-+ 使所有终端下线
-
-![android3](http://obmfmt907.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160809104434.png)
+![android](http://obmfmt907.bkt.clouddn.com/andriod_demo.jpg)
 
 ### linux终端
 
