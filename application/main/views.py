@@ -85,7 +85,6 @@ def logout():
         # POST请求用于下线其他终端
         device_info = request.form['hidden_form']
         my_logout(user=current_user.username, device_info=device_info)
-        flash(u"您的账号被其他终端下线，如需操作请重新登录")
         return redirect(url_for('main.details'))
 
 
@@ -98,6 +97,7 @@ def details():
     on_line_flag = r.get(get_device_info())
     if on_line_flag is None:
         logout_user()
+        flash(u"您的账号被其他终端下线，如需操作请重新登录")
         return redirect(url_for('main.index'))
     # 遍历redis值找到所有设备的信息，并加入返回信息的数组，且在数组里找到此终端的位置
     for i in r.keys():

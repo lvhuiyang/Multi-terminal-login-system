@@ -18,21 +18,51 @@
     
     用户通过 Chrome 和 Firefox 登录，分别标记为 会话1 和 会话2，登录后可以看到当前有两个在线会话。在 Firefox 中注销 会话1 后 Chrome 需要重新登录，Firefox 仍保持登录状态。
  
-##  2.思路
+## 2.思路
 
 + 账号密码数据保存在mysql数据库中，登录请求时查询数据库验证账号密码是否正确。
 
-+ 保存登录cookie，IP，设备信息，用以前端显示，并保存为log文件。
++ flask-login用以控制当前终端的登录状态,使用redis控制其他终端。
 
-+ 登录的状态保存在redis中，用户对登录操作改变redis某值，redis值改变后结束对应回话，使对应终端上线/下线。具体:
++ 登录的设备信息保存在session和redis中，用户对登录登出操作使redis值改变后刷新页面对应操作，使对应终端上线/下线。具体:
 
-    > 用户登录时，写入redis值，包括设备id，cookie，并将id值作为参数传入隐藏表单
++ 必要使用ajax进行异步变化。（暂时未实现）
 
-    > 进入终端管理页面 /details，首先读取redis值有多少，并一次显示设备信息
+## 3.总结
 
-    > 使用点击某一设备终端下线按钮时，删除redis值，重新读取页面，并使对应某终端的回话过期。
++ flask自带的session是保存在客户端cookie中的，这种session机制叫做 `client-side session` ,主要操作的是本终端的session，需要操作其他终端的session的话需要使用 redis劫持，也就是对应的 `server-side session`.
 
-    > 难点: 如何通过删除redis值使其他终端会话过期。
++ 目前使用flask-login控制本终端和登录状态， redis 用以控制其他终端。
 
-+ 必要使用ajax进行异步变化。
+## 4.安装与使用
+
++ 系统环境:
+
+    > mysql
+    > redis
+    > git
+
++ clone本仓库地址,对应命令：
+
+```bash
+git clone git@github.com:lvhuiyang/Multi-terminal-login-system.git
+```
+
++ 创建虚拟环境并且安装依赖
+
+```bash
+virtualenv venv
+source venv/bin/activate 
+pip install -r requirements.txt
+```
+
++ 使用gunicorn启动服务
+
+```
+gunicorn -w4 -b0.0.0.0:8000 manage:app
+```
+
+
+## 5.实例展示
+
 
