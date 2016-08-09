@@ -32,22 +32,22 @@
     <br/>
     {% block content %}
 
-    {% block page_header %}
-    {% endblock %}
+        {% block page_header %}
+        {% endblock %}
 
-    {% block page_flash %}
-    <div class="container">
-        {% for message in get_flashed_messages() %}
-        <div class="alert alert-warning">
-            <button type="button" class="close" data-dismiss="alter">&times;</button>
-            <h4>{{ message }}</h4>
-        </div>
-        {% endfor %}
-    </div>
-    {% endblock %}
+        {% block page_flash %}
+            <div class="container">
+                {% for message in get_flashed_messages() %}
+                    <div class="alert alert-warning">
+                        <button type="button" class="close" data-dismiss="alter">&times;</button>
+                        <h4>{{ message }}</h4>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endblock %}
 
-    {% block page_content %}
-    {% endblock %}
+        {% block page_content %}
+        {% endblock %}
 
     {% endblock %}
     <hr/>

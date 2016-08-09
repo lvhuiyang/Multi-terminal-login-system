@@ -1,17 +1,27 @@
 {% extends "base.html" %}
 
 {% block page_header %}
+    <br/>
+    <h4>使所有终端下线，并且清空redis,<a href="{{ url_for('main.clear') }}">点击</a>生效</h4>
 
-<div class="jumbotron">
-    <h3>您当前的登录状态：1 </h3>
-</div>
+    <div class="jumbotron">
+        {% for i in number_list %}
+            <h3>第{{ i + 1 }}个终端信息</h3>
+            {% if i == local_int %}<h3>此为当前终端</h3>{% endif %}
+            <br/>
+            <h4>终端的IP，操作系统，浏览器分别为</h4>
+            <h4>{{ return_info[i] }}</h4>
 
-<div class="jumbotron">
-    <h3>您当前的登录状态：2 </h3>
-</div>
+            {% if i == local_int %}<h3><a href="{{ url_for('main.logout') }}">使本终端下线</a></h3>
+            {% else %}<h3>强制该终端下线</h3>
+                <form action="{{ url_for('main.logout') }}" method="post">
+                    <input type="hidden" name="hidden_form" value="{{ return_info[i] }}">
+                    <input type="submit" name="test" value="强制该终端下线">
+                </form>
+            {% endif %}
+            <p>-------------------------------------</p>
+        {% endfor %}
+    </div>
 
-<div class="jumbotron">
-    <h3>您当前的登录状态： 3</h3>
-</div>
 
 {% endblock %}
