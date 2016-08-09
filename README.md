@@ -39,8 +39,14 @@
 + 系统环境:
 
     > mysql
+
     > redis
+
     > git
+
+    > 系统环境变量 SECRET_KEY 用以存储密钥
+
+    > 系统环境变量 MULTI_TERMINAL_DATABASE 用以存储对应mysql的地址
 
 + clone本仓库地址,对应命令：
 
@@ -51,8 +57,19 @@ git clone git@github.com:lvhuiyang/Multi-terminal-login-system.git
 + 创建虚拟环境并且安装依赖
 
 ```bash
+# 安装虚拟环境
 virtualenv venv
-source venv/bin/activate 
+
+# 使用当前虚拟环境
+source venv/bin/activate
+
+# 升级pip
+pip install --upgrade pip
+
+# 升级setuptools
+pip install --upgrade setuptools
+
+# 安装对应依赖
 pip install -r requirements.txt
 ```
 
@@ -64,5 +81,29 @@ gunicorn -w4 -b0.0.0.0:8000 manage:app
 
 
 ## 5.实例展示
+
+### 安卓终端
+
++ 管理界面
+
+![android1](http://obmfmt907.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160809104402.png)
+
++ 登陆界面
+
+![android2](http://obmfmt907.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160809104424.png)
+
++ 使所有终端下线
+
+![android3](http://obmfmt907.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160809104434.png)
+
+### linux终端
+
+![linux_chrome2](http://obmfmt907.bkt.clouddn.com/Screenshot%20from%202016-08-09%2010:53:39.png)
+
+![linux_chrome1](http://obmfmt907.bkt.clouddn.com/Screenshot%20from%202016-08-09%2010:54:02.png)
+
+### windows终端
+
+![windows](http://obmfmt907.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809104305.jpg)
 
 
