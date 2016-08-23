@@ -80,20 +80,3 @@ gunicorn -w4 -b0.0.0.0:8000 manage:app
 ```
 
 
-## 5.实例展示
-
-### 安卓终端
-
-![android](http://obmfmt907.bkt.clouddn.com/andriod_demo.jpg)
-
-### linux终端
-
-![linux_chrome2](http://obmfmt907.bkt.clouddn.com/Screenshot%20from%202016-08-09%2010:53:39.png)
-
-![linux_chrome1](http://obmfmt907.bkt.clouddn.com/Screenshot%20from%202016-08-09%2010:54:02.png)
-
-### windows终端
-
-![windows](http://obmfmt907.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160809104305.jpg)
-
-
